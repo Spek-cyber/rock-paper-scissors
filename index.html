@@ -1,0 +1,61 @@
+<script>
+// Initilize variables for use
+  let playerScore = 0;
+  let computerScore = 0;
+  const choices = ["rock", "paper", "scissors"]
+
+  //Determine computer choice
+     function getComputerChoice(){
+    const randomNum = Math.floor(Math.random() * 3)
+    const computerChoice = choices[randomNum];
+    return computerChoice;
+    }
+  
+  //Determine winner of single round
+  function playRound(playerSelection, computerSelection){
+    if (computerSelection === playerSelection){
+        return "It's a Tie!";
+       //Player Wins 
+    } else if (computerSelection === "rock" && playerSelection === "paper"){
+        playerScore++
+        return "You Win! Paper beats Rock!";
+    } else if (computerSelection === "paper" && playerSelection === "scissors"){
+        playerScore++
+        return "You Win! Scissors beats Paper!";
+    } else if (computerSelection === "scissors" && playerSelection === "rock"){
+        playerScore++
+        return "You Win! Rock beats Scissors!";
+    }
+    //Player Loses
+    else if (computerSelection === "rock" && playerSelection === "scissors"){
+        computerScore++
+        return "You lose! Scissors loses to Rock!"
+    } else if (computerSelection === "paper" && playerSelection === "rock"){
+        computerScore++
+        return "You lose! Rock loses to Paper!";
+    } else if (computerSelection === "scissors" && playerSelection === "paper") {
+        computerScore++
+        return "You lose! Paper loses to Scissors!";
+    }
+  }
+
+  
+  
+
+//Full Game
+  function game(){
+    for (let i = 0; i < 5; i++){
+        const computerSelection = getComputerChoice();
+        const playerSelection = prompt("Please choose Rock, Paper, or Scissors").toLocaleLowerCase();
+        playRound(playerSelection, computerSelection);
+    }
+    if (playerScore > computerScore){
+        return "Congratulations! You Won!"
+    } else if (computerScore > playerScore){
+        return "You Lost! Try Again?"
+    } else {
+        return "You tied with the Computer!"
+    }
+  }
+console.log(game());
+</script>
